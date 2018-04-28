@@ -8,7 +8,8 @@ import List from "./List";
 
 class BooksApp extends React.Component {
   state = {
-    all: []
+    all: [],
+    searchResults: []
   };
   componentDidMount() {
     this.getAll();
@@ -22,6 +23,41 @@ class BooksApp extends React.Component {
       // }
       this.setState({ all: books });
     });
+  }
+  search(query) {
+    console.log(`searching for "${query}"`);
+
+    if (query) {
+      BooksAPI.search(query.toString()).then(response => {
+        console.log("api says: ", response);
+        if (response.error) {
+          this.setState({ apiError: true, searchResults: [] });
+          // console.log("please use the  good terms");
+        } else {
+          for (const result of response) {
+            Object.defineProperty(result, "shelf", {
+              value: "none",
+              writable: true
+            });
+            let trick = this;
+            console.log(trick);
+
+            for (const book of this.books) {
+              if (result.id === book.id) {
+                console.log(
+                  `"${result.title}" from ${
+                    result.authors
+                  } is already in your bookcase [${book.shelf}]`
+                );
+                result.shelf = book.shelf;
+              }
+            }
+          }
+
+          this.setState({ searchResults: response, apiError: false });
+        }
+      });
+    } else this.setState({ searchResults: [] });
   }
   update = (book, shelf) => {
     console.log(`id ${book.id} moved to ${shelf}`);
@@ -45,7 +81,14 @@ class BooksApp extends React.Component {
         <Route
           exact
           path="/search"
-          render={() => <Search update={this.update} books={this.state.all} />}
+          render={() => (
+            <Search
+              search={this.search}
+              update={this.update}
+              books={this.state.all}
+              searchResults={this.state.searchResults}
+            />
+          )}
         />
       </div>
     );

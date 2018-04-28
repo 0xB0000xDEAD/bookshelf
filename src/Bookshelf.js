@@ -19,7 +19,7 @@ class Bookshelf extends Component {
           </div>
         </div>
       );
-    }else {
+    } else {
       return (
         <div className="bookshelf">
           <h2 className="bookshelf-title">{this.props.category}</h2>
@@ -29,7 +29,7 @@ class Bookshelf extends Component {
         </div>
       );
     }
-  } 
+  }
 }
 
 export default Bookshelf;

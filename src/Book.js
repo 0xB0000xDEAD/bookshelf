@@ -18,23 +18,26 @@ class Book extends Component {
     }
 
     return (
-      <div className="book">
+      <div className="book" /* id={this.props.id} */>
         <div className="book-top">
           <div
             className="book-cover"
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${
-                this.props.details.imageLinks.smallThumbnail
-              })`
+              backgroundImage: `url(${details.imageLinks.smallThumbnail})`
             }}
           />
           <div className="book-shelf-changer">
             <select
-              value={this.props.details.shelf}
+              value={details.shelf}
               onChange={e => {
-                update({ id: this.props.details.id }, e.target.value);
+                update({ id: details.id }, e.target.value);
+                details.shelf = e.target.value;
+
+                /* let selectEl = document.getElementById(this.props.id);
+                selectEl.setAttribute("value", e.target.value);
+                console.log("|=| -->\n    ", selectEl); */
                 // window.location.href = "/";
               }}
             >
@@ -44,7 +47,6 @@ class Book extends Component {
               <option value="wantToRead"> Want to Read</option>
               <option value="read">Read</option>
               <option value="currentlyReading">Currently Reading</option>
-              <option value="none">None</option>
             </select>
           </div>
         </div>
