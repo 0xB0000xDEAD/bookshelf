@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Book from "./Book";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faStar from "@fortawesome/fontawesome-free-solid/faStar";
+import faStarHalf from "@fortawesome/fontawesome-free-solid/faStarHalf";
 
 class Results extends Component {
   state = {
@@ -125,21 +126,14 @@ class Results extends Component {
       if (el === 0.5) {
         return (
           <li key={Math.random()}>
-            <FontAwesomeIcon id={Math.random()} icon={faStar} color="yellow" />
+            <FontAwesomeIcon id={Math.random()} icon={faStarHalf} color="yellow" />
           </li>
         );
       }
       if (el === 1) {
-        return (
-          <li key={Math.random()}>
-            <FontAwesomeIcon
-              id={Math.random()}
-              icon={faStar}
-              color="blue"
-              rotation={90}
-            />
-          </li>
-        );
+        return <li key={Math.random()}>
+            <FontAwesomeIcon id={Math.random()} icon={faStar} color="yellow" />
+          </li>;
       } else {
         return (
           <li key={Math.random()}>
