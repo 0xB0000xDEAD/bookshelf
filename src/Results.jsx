@@ -98,7 +98,6 @@ class Results extends Component {
   }
 
   render() {
-    console.log(this.props);
 
     let noReview = this.props.results
       .filter(el => {
@@ -106,7 +105,7 @@ class Results extends Component {
       })
       .map(el => (
         <li key={el.id}>
-          <Book id={el.id} details={el} update={this.props.update} />
+          <Book id={el.id} details={el} update={this.props.update} delOption={this.props.delOption} />
         </li>
       ));
 
@@ -117,7 +116,7 @@ class Results extends Component {
 
       .map(el => (
         <li key={el.id}>
-          <Book id={el.id} details={el} update={this.props.update} />
+          <Book id={el.id} details={el} update={this.props.update} delOption={this.props.delOption} />
         </li>
       ));
 

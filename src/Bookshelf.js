@@ -7,7 +7,7 @@ class Bookshelf extends Component {
     if (this.props.books.length > 0) {
       let books = this.props.books.map(el => (
         <li key={el.id}>
-          <Book details={el} update={this.props.update} />
+          <Book details={el} update={this.props.update} delOption={this.props.delOption} />
         </li>
       ));
 

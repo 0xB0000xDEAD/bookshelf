@@ -24,14 +24,13 @@ class Search extends Component {
   //   }, 1000)(this.count);
   // };
 
-
   handleChange = event => {
     let query = event.target.value.trim();
     console.log(`searching for "${query}"`);
 
     if (query) {
       BooksAPI.search(query.toString()).then(response => {
-        console.log('api says: ',response);
+        console.log("api says: ", response);
         if (response.error) {
           this.setState({ apiError: true, searchResults: [] });
           // console.log("please use the  good terms");
@@ -57,7 +56,6 @@ class Search extends Component {
       });
     } else this.setState({ searchResults: [] });
   };
-
 
   // handleChange = event => {
   //   this.props.search(event.target.value);
@@ -100,7 +98,11 @@ class Search extends Component {
           </div>
         </div>
         {/* <Filter results={this.state.searchResults} apiError={this.state.apiError} /> */}
-        <Results results={this.state.searchResults} apiError={this.state.apiError} />
+        <Results
+          results={this.state.searchResults}
+          apiError={this.state.apiError}
+          delOption={this.props.delOption}
+        />
 
         {/* <div className="search-books-results">
           {this.state.apiError === true && (

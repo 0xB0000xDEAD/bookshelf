@@ -76,7 +76,7 @@ class BooksApp extends React.Component {
         <Route
           exact
           path="/"
-          render={() => <List update={this.update} books={this.state.all} />}
+          render={() => <List update={this.update} books={this.state.all} delOption={false} />}
         />
         <Route
           exact
@@ -87,6 +87,7 @@ class BooksApp extends React.Component {
               update={this.update}
               books={this.state.all}
               searchResults={this.state.searchResults}
+              delOption={true}
             />
           )}
         />
