@@ -7,6 +7,9 @@ class Book extends Component {
   };
 
   render() {
+
+    console.log(this.props.delOption);
+    
     const { update } = this.props;
     const { details } = this.props;
 
