@@ -41,7 +41,7 @@ class Book extends Component {
                 // window.location.href = "/";
               }}
             >
-              <option value="none" disabled>
+              <option value="none" disabled={this.props.delOption}>
                 Move to...
               </option>
               <option value="wantToRead"> Want to Read</option>

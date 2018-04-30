@@ -12,6 +12,8 @@
 run in the terminal
 
 ```
+$ yarn install
+
 $ yarn start
 ```
 

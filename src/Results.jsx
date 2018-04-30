@@ -65,7 +65,7 @@ class Results extends Component {
         // console.log(`previous state is: ${prev.stars}`);
         let c = 0;
         let tmp = prev.stars;
-        if (tmp[this.state.starsNumber - 1] == 1) {
+        if (tmp[this.state.starsNumber - 1] === 1) {
           c = -0.5;
           tmp.fill(0);
         } else {
@@ -86,7 +86,7 @@ class Results extends Component {
               tmp[i] = 1;
               break;
             }
-            if (tmp[i] == 1) {
+            if (tmp[i] === 1) {
               //
             }
           }
@@ -98,26 +98,34 @@ class Results extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     let noReview = this.props.results
       .filter(el => {
         return !el.averageRating;
       })
       .map(el => (
         <li key={el.id}>
-          <Book id={el.id} details={el} update={this.props.update} />
+          <Book
+            id={el.id}
+            details={el}
+            update={this.props.update}
+            delOption={this.props.delOption}
+          />
         </li>
       ));
 
     let results = this.props.results
       .filter(el => {
-        return el.averageRating && el.averageRating == this.state.rating;
+        return el.averageRating && el.averageRating === this.state.rating;
       })
 
       .map(el => (
         <li key={el.id}>
-          <Book id={el.id} details={el} update={this.props.update} />
+          <Book
+            id={el.id}
+            details={el}
+            update={this.props.update}
+            delOption={this.props.delOption}
+          />
         </li>
       ));
 
@@ -126,14 +134,20 @@ class Results extends Component {
       if (el === 0.5) {
         return (
           <li key={Math.random()}>
-            <FontAwesomeIcon id={Math.random()} icon={faStarHalf} color="yellow" />
+            <FontAwesomeIcon
+              id={Math.random()}
+              icon={faStarHalf}
+              color="yellow"
+            />
           </li>
         );
       }
       if (el === 1) {
-        return <li key={Math.random()}>
+        return (
+          <li key={Math.random()}>
             <FontAwesomeIcon id={Math.random()} icon={faStar} color="yellow" />
-          </li>;
+          </li>
+        );
       } else {
         return (
           <li key={Math.random()}>
