@@ -59,15 +59,19 @@ class BooksApp extends React.Component {
       });
     } else this.setState({ searchResults: [] });
   }
-  update = (book, shelf) => {
-    console.log(`id ${book.id} moved to ${shelf}`);
-    let trick = this;
-    // console.log(trick);
 
-    BooksAPI.update(book, shelf).then(function(response) {
-      // console.log(response);
-      trick.getAll();
+  update = (book, shelf) => {
+    let match = this.state.all.find(el => {
+      return el.id === book.id;
     });
+    if (match.shelf !== shelf) {
+      BooksAPI.update(book, shelf).then(() => {
+        match.shelf = shelf;
+        this.setState(state => ({
+          all: state.all.filter(e => e.id !== match.id).concat([match])
+        }));
+      });
+    }
   };
 
   render() {
@@ -76,7 +80,13 @@ class BooksApp extends React.Component {
         <Route
           exact
           path="/"
-          render={() => <List update={this.update} books={this.state.all} delOption={false} />}
+          render={() => (
+            <List
+              update={this.update}
+              books={this.state.all}
+              delOption={false}
+            />
+          )}
         />
         <Route
           exact
