@@ -12,40 +12,6 @@ class Results extends Component {
     rating: 3
   };
 
-  /* componentDidMount() {
-    // create the star state array
-    let tmp = [];
-    for (let i = 0; i < this.state.starsNumber; i++) {
-      if (i <= this.state.defaultRating - 1) {
-        tmp.push(1);
-      } else {
-        tmp.push(0);
-      }
-    }
-    this.setState({ stars: tmp });
-
-    let target = document.getElementById("star-board");
-    target.addEventListener("click", () => {
-      this.setState((prev, props) => {
-        console.log(`previous state is: ${prev.stars}`);
-        let c = 0;
-        let tmp = prev.stars;
-        for (const el of tmp) {
-          if (el === 1) {
-            if (tmp[4] === 0) {
-              c++;
-            } else {
-              tmp.fill(0);
-              return { rating: 0 };
-            }
-          }
-        }
-        tmp[c] = 1;
-        return { rating: c + 1 };
-      });
-    });
-  } */
-
   componentDidMount() {
     // create the star state array
     let tmp = [];
@@ -62,7 +28,6 @@ class Results extends Component {
 
     target.addEventListener("click", () => {
       this.setState((prev, props) => {
-        // console.log(`previous state is: ${prev.stars}`);
         let c = 0;
         let tmp = prev.stars;
         if (tmp[this.state.starsNumber - 1] === 1) {

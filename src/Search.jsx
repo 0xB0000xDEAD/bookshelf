@@ -13,24 +13,12 @@ class Search extends Component {
   };
   count = [];
 
-  // handleChangeThrottled = () => {
-  //   // console.log(this.count.length); //ok
-  //   console.log(".");
-
-  //   _.debounce(function(c) {
-  //     c.push("+");
-  //     // console.log("===> *");
-  //     console.log(c.length);
-  //   }, 1000)(this.count);
-  // };
-
   handleChange = event => {
     let query = event.target.value.trim();
     console.log(`searching for "${query}"`);
 
     if (query) {
       BooksAPI.search(query.toString()).then(response => {
-        console.log("api says: ", response);
         if (response.error) {
           this.setState({ apiError: true, searchResults: [] });
           // console.log("please use the  good terms");
@@ -57,21 +45,11 @@ class Search extends Component {
     } else this.setState({ searchResults: [] });
   };
 
-  // handleChange = event => {
-  //   this.props.search(event.target.value);
-  // }
-
   handleSubmit = event => {
     event.preventDefault();
   };
 
   render() {
-    // let results = this.state.searchResults.map(el => (
-    //   <li key={el.id}>
-    //     <Book id={el.id} details={el} update={this.props.update} />
-    //   </li>
-    // ));
-
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -88,28 +66,14 @@ class Search extends Component {
                 placeholder={"search for a Book"}
               />
             </form>
-            {/* <form onSubmit={this.handleSubmit} className="create-contact-form">
-              <input
-                type="text"
-                placeholder="Search by title or author"
-                onChange={this.handleChange}
-              />
-            </form> */}
           </div>
         </div>
-        {/* <Filter results={this.state.searchResults} apiError={this.state.apiError} /> */}
         <Results
           results={this.state.searchResults}
+          update={this.props.update}
           apiError={this.state.apiError}
           delOption={this.props.delOption}
         />
-
-        {/* <div className="search-books-results">
-          {this.state.apiError === true && (
-            <span className="queryAlert">please use the good terms</span>
-          )}
-          {results.length > 0 && <ol className="books-grid">{results}</ol>}
-        </div> */}
       </div>
     );
   }

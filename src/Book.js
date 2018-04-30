@@ -7,9 +7,6 @@ class Book extends Component {
   };
 
   render() {
-
-    console.log(this.props.delOption);
-    
     const { update } = this.props;
     const { details } = this.props;
 
@@ -21,7 +18,7 @@ class Book extends Component {
     }
 
     return (
-      <div className="book" /* id={this.props.id} */>
+      <div className="book">
         <div className="book-top">
           <div
             className="book-cover"
@@ -37,11 +34,6 @@ class Book extends Component {
               onChange={e => {
                 update({ id: details.id }, e.target.value);
                 details.shelf = e.target.value;
-
-                /* let selectEl = document.getElementById(this.props.id);
-                selectEl.setAttribute("value", e.target.value);
-                console.log("|=| -->\n    ", selectEl); */
-                // window.location.href = "/";
               }}
             >
               <option value="none" disabled={this.props.delOption}>
