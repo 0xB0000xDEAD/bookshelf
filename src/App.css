@@ -202,3 +202,11 @@ body,
 .queryAlert {
   background-color: red;
 }
+.notfound {
+  width: 100%;
+}
+.notfound > p, img {
+  width: inherit;
+  text-align: center;
+}
+
